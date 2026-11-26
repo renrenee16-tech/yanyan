@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Japan in April 🐙 Savings Quest</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fredoka', 'Nunito', 'ui-rounded', 'sans-serif'],
+            body: ['Nunito', 'ui-rounded', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            mint: {
+              50: '#ECFDF5',
+              100: '#D1FAE5',
+              200: '#A7F3D0',
+              300: '#6EE7B7',
+              400: '#34D399',
+              500: '#10B981',
+              600: '#059669',
+            },
+            aqua: {
+              400: '#2DD4BF',
+              500: '#14B8A6',
+            },
+            coral: {
+              400: '#FB7185',
+              500: '#F43F5E',
+              600: '#E11D48',
+            },
+            sunny: {
+              300: '#FDE047',
+              400: '#FACC15',
+              500: '#EAB308',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #D1FAE5;
+      background-image: 
+        radial-gradient(at 15% 15%, #ECFDF5 0px, transparent 50%),
+        radial-gradient(at 85% 25%, #A7F3D0 0px, transparent 50%),
+        radial-gradient(at 50% 90%, #6EE7B7 0px, transparent 55%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Chunky 3D tactile buttons */
+    .btn-chunky {
+      transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.1s ease;
+    }
+    .btn-chunky:active {
+      transform: translateY(4px);
+    }
+
+    .btn-mint {
+      background: linear-gradient(180deg, #34D399 0%, #10B981 100%);
+      box-shadow: 0 6px 0 #047857, 0 10px 18px rgba(16, 185, 129, 0.35);
+    }
+    .btn-mint:active {
+      box-shadow: 0 2px 0 #047857, 0 4px 8px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-coral {
+      background: linear-gradient(180deg, #FB7185 0%, #F43F5E 100%);
+      box-shadow: 0 6px 0 #BE123C, 0 10px 18px rgba(244, 63, 94, 0.3);
+    }
+    .btn-coral:active {
+      box-shadow: 0 2px 0 #BE123C, 0 4px 8px rgba(244, 63, 94, 0.2);
+    }
+
+    .btn-sunny {
+      background: linear-gradient(180deg, #FDE047 0%, #FACC15 100%);
+      box-shadow: 0 5px 0 #CA8A04;
+    }
+    .btn-sunny:active {
+      box-shadow: 0 1px 0 #CA8A04;
+    }
+
+    .btn-pill {
+      box-shadow: 0 3px 0 #CBD5E1;
+    }
+    .btn-pill:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #CBD5E1;
+    }
+
+    /* Octopus animations */
+    @keyframes octoFloat {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+    @keyframes octoCheer {
+      0% { transform: scale(1) rotate(0deg); }
+      20% { transform: scale(1.22) rotate(-10deg) translateY(-10px); }
+      40% { transform: scale(1.25) rotate(10deg) translateY(-14px); }
+      60% { transform: scale(1.18) rotate(-6deg) translateY(-8px); }
+      80% { transform: scale(1.1) rotate(4deg) translateY(-3px); }
+      100% { transform: scale(1) rotate(0deg) translateY(0); }
+    }
+    @keyframes octoWobble {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-8deg) scale(0.95); }
+      75% { transform: rotate(8deg) scale(0.95); }
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.85) translateY(16px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes badgeShine {
+      0% { transform: scale(0.8); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .octo-idle {
+      animation: octoFloat 3s ease-in-out infinite;
+      display: inline-block;
+    }
+    .octo-cheer {
+      animation: octoCheer 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-block;
+    }
+    .octo-sad {
+      animation: octoWobble 0.55s ease-in-out;
+      display: inline-block;
+    }
+
+    .modal-animate {
+      animation: popIn 0.24s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .badge-unlocked-pop {
+      animation: badgeShine 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Progress ring smooth transition */
+    #progress-ring-circle {
+      transition: stroke-dashoffset 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.4s ease;
+    }
+
+    /* Hide scrollbar for clean mobile feel */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #A7F3D0;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-mint-200">
+
+  <!-- Confetti Canvas Overlay -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <!-- Main Mobile App Container -->
+  <div class="max-w-[440px] mx-auto min-h-screen bg-mint-50/90 sm:my-4 sm:min-h-[calc(100vh-2rem)] sm:rounded-[2.5rem] sm:shadow-2xl sm:border-4 sm:border-white flex flex-col relative overflow-hidden">
+
+    <!-- Top Header -->
+    <header class="px-5 pt-5 pb-2 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-mint-400 to-aqua-500 flex items-center justify-center text-white font-display text-xl shadow-md border-2 border-white">
+          🌸
+        </div>
+        <div>
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-mint-600 block leading-none">Savings Quest</span>
+          <h1 id="header-goal-title" class="font-display text-xl font-bold text-slate-800 leading-tight">Japan in April</h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Sound Toggle Button -->
+        <button id="btn-sound-toggle" aria-label="Toggle sound" class="w-10 h-10 rounded-2xl bg-white border-2 border-mint-200 flex items-center justify-center text-lg shadow-sm active:scale-95 transition">
+          🔊
+        </button>
+        <!-- Settings Button -->
+        <button id="btn-settings" aria-label="Goal settings" class="w-10 h-10 rounded-2xl bg-white border-2 border-mint-200 flex items-center justify-center text-lg shadow-sm active:scale-95 transition">
+          ⚙️
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Content -->
+    <main class="flex-1 px-4 pb-8 space-y-4 overflow-y-auto">
+
+      <!-- Octopus Mascot Cheer Card -->
+      <section class="bg-white rounded-3xl p-3.5 border-2 border-mint-200 shadow-sm flex items-center gap-3.5 relative">
+        <button id="octo-mascot-btn" title="Tap Tako the Octopus!" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-100 via-rose-100 to-amber-100 border-2 border-pink-200 flex items-center justify-center shrink-0 shadow-inner cursor-pointer select-none focus:outline-none">
+          <span id="octo-emoji" class="text-4xl octo-idle">🐙</span>
+        </button>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5 mb-0.5">
+            <span class="text-xs font-extrabold text-coral-500 uppercase tracking-wide">Tako the Octopus</span>
+            <span class="inline-block w-2 h-2 rounded-full bg-mint-400 animate-pulse"></span>
+          </div>
+          <p id="octo-speech" class="text-sm font-bold text-slate-700 leading-snug">
+            Blub-blub! Ready to save for sushi, cherry blossoms & bullet trains? Tap + Add Savings!
+          </p>
+        </div>
+      </section>
+
+      <!-- Hero Progress Ring Card -->
+      <section class="bg-white rounded-[2rem] p-5 border-2 border-mint-200 shadow-md relative overflow-hidden">
+        <!-- Decorative subtle bubbles -->
+        <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-mint-100/70 pointer-events-none"></div>
+        <div class="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-amber-100/60 pointer-events-none"></div>
+
+        <!-- Top Pill Status -->
+        <div class="flex items-center justify-between mb-2 relative z-10">
+          <span id="percent-badge" class="px-3 py-1 rounded-full bg-mint-100 text-mint-700 font-display font-bold text-sm border border-mint-200">
+            0% Complete
+          </span>
+          <span id="remaining-pill" class="text-xs font-extrabold text-slate-500">
+            HK$20,000 to go
+          </span>
+        </div>
+
+        <!-- SVG Progress Ring -->
+        <div class="relative w-56 h-56 mx-auto my-1 flex items-center justify-center">
+          <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 220 220">
+            <defs>
+              <linearGradient id="mintRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2DD4BF" />
+                <stop offset="50%" stop-color="#10B981" />
+                <stop offset="100%" stop-color="#059669" />
+              </linearGradient>
+              <linearGradient id="goldRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FDE047" />
+                <stop offset="50%" stop-color="#F59E0B" />
+                <stop offset="100%" stop-color="#10B981" />
+              </linearGradient>
+            </defs>
+            <!-- Background Track -->
+            <circle
+              cx="110"
+              cy="110"
+              r="90"
+              fill="none"
+              stroke="#ECFDF5"
+              stroke-width="20"
+            />
+            <circle
+              cx="110"
+              cy="110"
+              r="90"
+              fill="none"
+              stroke="#D1FAE5"
+              stroke-width="20"
+              stroke-dasharray="6 10"
+              opacity="0.6"
+            />
+            <!-- Animated Progress Arc -->
+            <circle
+              id="progress-ring-circle"
+              cx="110"
+              cy="110"
+              r="90"
+              fill="none"
+              stroke="url(#mintRingGrad)"
+              stroke-width="20"
+              stroke-linecap="round"
+              stroke-dasharray="565.48"
+              stroke-dashoffset="565.48"
+            />
+          </svg>
+
+          <!-- Center Amount Readout -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Saved So Far</span>
+            <div id="current-saved-display" class="font-display text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight my-0.5">
+              HK$0
+            </div>
+            <div class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-extrabold">
+              Goal: <span id="target-amount-display">HK$20,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Action Buttons (Chunky Money In / Money Out) -->
+        <div class="grid grid-cols-5 gap-3 mt-3 relative z-10">
+          <button id="btn-open-in" class="col-span-3 btn-chunky btn-mint text-white font-display font-bold text-lg py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 cursor-pointer">
+            <span class="text-xl bg-white/25 w-7 h-7 rounded-xl flex items-center justify-center">+</span>
+            <span>Add Savings</span>
+          </button>
+          <button id="btn-open-out" class="col-span-2 btn-chunky btn-coral text-white font-display font-bold text-base py-3.5 px-3 rounded-2xl flex items-center justify-center gap-1.5 cursor-pointer">
+            <span class="text-lg bg-white/25 w-6 h-6 rounded-lg flex items-center justify-center">−</span>
+            <span>Money Out</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Milestone Badges Section (25%, 50%, 75%, 100%) -->
+      <section class="bg-white rounded-3xl p-4 border-2 border-mint-200 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-display text-base font-bold text-slate-800 flex items-center gap-1.5">
+            <span>🏆</span>
+            <span>Japan Quest Badges</span>
+          </h2>
+          <span id="badges-count-pill" class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-700">
+            0 / 4 Unlocked
+          </span>
+        </div>
+
+        <div id="badges-grid" class="grid grid-cols-4 gap-2">
+          <!-- Rendered dynamically via JS -->
+        </div>
+      </section>
+
+      <!-- Simple Budget Summary & Activity Log -->
+      <section class="bg-white rounded-3xl p-4 border-2 border-mint-200 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-display text-base font-bold text-slate-800 flex items-center gap-1.5">
+            <span>📒</span>
+            <span>Money In & Out</span>
+          </h2>
+          <span class="text-[11px] font-bold text-slate-400">Saved on device</span>
+        </div>
+
+        <!-- Money In vs Money Out Summary Pills -->
+        <div class="grid grid-cols-2 gap-2.5 mb-3.5">
+          <div class="bg-mint-50 border-2 border-mint-200 rounded-2xl p-2.5 flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-mint-500 text-white flex items-center justify-center font-display font-bold text-lg shrink-0">
+              ↑
+            </div>
+            <div class="min-w-0">
+              <div class="text-[11px] font-extrabold text-mint-700 uppercase">Money In</div>
+              <div id="total-in-display" class="font-display font-bold text-base text-slate-800 truncate">HK$0</div>
+            </div>
+          </div>
+
+          <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-2.5 flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-coral-500 text-white flex items-center justify-center font-display font-bold text-lg shrink-0">
+              ↓
+            </div>
+            <div class="min-w-0">
+              <div class="text-[11px] font-extrabold text-coral-600 uppercase">Money Out</div>
+              <div id="total-out-display" class="font-display font-bold text-base text-slate-800 truncate">HK$0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transaction History List -->
+        <div id="transactions-list" class="space-y-2 max-h-64 overflow-y-auto pr-0.5">
+          <!-- Rendered dynamically via JS -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL: Add Savings / Money Out Bottom Sheet -->
+  <div id="tx-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-40 hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-[440px] rounded-t-[2rem] sm:rounded-[2rem] p-5 border-t-4 sm:border-4 border-mint-300 shadow-2xl modal-animate">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <span id="modal-icon" class="w-10 h-10 rounded-2xl bg-mint-100 text-mint-600 flex items-center justify-center text-2xl font-display font-bold">+</span>
+          <div>
+            <h3 id="modal-title" class="font-display text-xl font-bold text-slate-800">Add Savings</h3>
+            <p id="modal-subtitle" class="text-xs font-bold text-slate-500">Feed Tako for your Japan trip!</p>
+          </div>
+        </div>
+        <button id="btn-close-tx-modal" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center hover:bg-slate-200">
+          ✕
+        </button>
+      </div>
+
+      <!-- Quick-Tap Preset Amounts -->
+      <div class="mb-4">
+        <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2">Quick Tap (HK$)</label>
+        <div id="preset-buttons" class="grid grid-cols-4 gap-2">
+          <button type="button" data-amount="100" class="preset-btn btn-pill bg-mint-50 hover:bg-mint-100 border-2 border-mint-200 rounded-2xl py-2.5 font-display font-bold text-sm text-slate-800 transition">
+            $100
+          </button>
+          <button type="button" data-amount="500" class="preset-btn btn-pill bg-mint-50 hover:bg-mint-100 border-2 border-mint-200 rounded-2xl py-2.5 font-display font-bold text-sm text-slate-800 transition">
+            $500
+          </button>
+          <button type="button" data-amount="1000" class="preset-btn btn-pill bg-mint-50 hover:bg-mint-100 border-2 border-mint-200 rounded-2xl py-2.5 font-display font-bold text-sm text-slate-800 transition">
+            $1,000
+          </button>
+          <button type="button" data-amount="2500" class="preset-btn btn-pill bg-mint-50 hover:bg-mint-100 border-2 border-mint-200 rounded-2xl py-2.5 font-display font-bold text-sm text-slate-800 transition">
+            $2,500
+          </button>
+        </div>
+      </div>
+
+      <!-- Custom Amount Input -->
+      <div class="mb-4">
+        <label for="tx-amount-input" class="block text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1.5">Amount (HK$)</label>
+        <div class="relative">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 font-display font-bold text-xl text-slate-400">HK$</span>
+          <input
+            id="tx-amount-input"
+            type="number"
+            inputmode="decimal"
+            min="1"
+            step="any"
+            placeholder="0"
+            class="w-full pl-16 pr-4 py-3.5 rounded-2xl bg-slate-50 border-2 border-slate-200 focus:border-mint-500 focus:bg-white focus:outline-none font-display font-bold text-2xl text-slate-800"
+          />
+        </div>
+        <p id="tx-error-msg" class="text-xs font-bold text-coral-500 mt-1 hidden">Please enter an amount greater than HK$0.</p>
+      </div>
+
+      <!-- Quick Note Chips + Custom Note -->
+      <div class="mb-5">
+        <label for="tx-note-input" class="block text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1.5">Note (Optional)</label>
+        <div id="quick-tags" class="flex flex-wrap gap-1.5 mb-2">
+          <!-- Populated dynamically based on In vs Out -->
+        </div>
+        <input
+          id="tx-note-input"
+          type="text"
+          maxlength="36"
+          placeholder="e.g., Skipped bubble tea 🧋"
+          class="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border-2 border-slate-200 focus:border-mint-500 focus:bg-white focus:outline-none text-sm font-bold text-slate-700"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button id="btn-submit-tx" class="w-full btn-chunky btn-mint text-white font-display font-bold text-lg py-4 rounded-2xl cursor-pointer">
+        Save HK$0 to Goal! 🐙
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: Badge Unlocked Celebration Pop-up -->
+  <div id="badge-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-5">
+    <div class="bg-white w-full max-w-[360px] rounded-[2rem] p-6 border-4 border-sunny-400 text-center shadow-2xl modal-animate relative">
+      <div class="inline-block px-3 py-1 rounded-full bg-sunny-300 text-amber-900 font-display font-bold text-xs uppercase tracking-wider mb-3">
+        🎉 New Badge Unlocked!
+      </div>
+      <div id="badge-modal-icon" class="w-24 h-24 mx-auto rounded-3xl bg-gradient-to-br from-amber-100 to-yellow-200 border-4 border-sunny-400 flex items-center justify-center text-5xl shadow-md mb-3">
+        ✈️
+      </div>
+      <h3 id="badge-modal-title" class="font-display text-2xl font-bold text-slate-800 mb-1">Flight Ticket Explorer</h3>
+      <p id="badge-modal-desc" class="text-sm font-bold text-slate-600 mb-5">You reached 25% of your Japan in April goal! Tako is doing a happy tentacle dance!</p>
+      <button id="btn-close-badge-modal" class="w-full btn-chunky btn-sunny text-amber-950 font-display font-bold text-lg py-3.5 rounded-2xl cursor-pointer">
+        Awesome! 🐙✨
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: Settings / Customize Goal -->
+  <div id="settings-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-40 hidden items-center justify-center p-4">
+    <div class="bg-white w-full max-w-[400px] rounded-[2rem] p-5 border-4 border-mint-200 shadow-2xl modal-animate">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display text-xl font-bold text-slate-800">⚙️ Quest Settings</h3>
+        <button id="btn-close-settings" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center">✕</button>
+      </div>
+
+      <div class="space-y-3.5 mb-5">
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1">Goal Name</label>
+          <input id="settings-goal-name" type="text" maxlength="28" class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-50 border-2 border-slate-200 font-bold text-slate-800 focus:border-mint-500 focus:outline-none" />
+        </div>
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1">Target Amount (HK$)</label>
+          <input id="settings-goal-target" type="number" min="100" step="100" class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-50 border-2 border-slate-200 font-display font-bold text-lg text-slate-800 focus:border-mint-500 focus:outline-none" />
+        </div>
+      </div>
+
+      <button id="btn-save-settings" class="w-full btn-chunky btn-mint text-white font-display font-bold text-base py-3.5 rounded-2xl mb-3 cursor-pointer">
+        Save Changes
+      </button>
+
+      <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-400">Stored 100% locally on device</span>
+        <button id="btn-reset-data" class="text-xs font-extrabold text-coral-500 hover:underline px-2 py-1 rounded-lg">
+          Reset All Data
+        </button>
+      </div>
+      <div id="reset-confirm-box" class="hidden mt-3 p-3 rounded-2xl bg-rose-50 border border-rose-200 text-center">
+        <p class="text-xs font-bold text-rose-700 mb-2">Clear all savings & start fresh at HK$0?</p>
+        <div class="flex gap-2 justify-center">
+          <button id="btn-cancel-reset" class="px-3 py-1.5 rounded-xl bg-white text-slate-600 text-xs font-extrabold border border-slate-200">Cancel</button>
+          <button id="btn-confirm-reset" class="px-3 py-1.5 rounded-xl bg-coral-500 text-white text-xs font-extrabold">Yes, Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ==========================================
+      // 1. STATE & LOCALSTORAGE CONFIGURATION
+      // ==========================================
+      const STORAGE_KEY = 'japan_april_savings_quest_v1';
+
+      const MILESTONES = [
+        {
+          id: 'm25',
+          percent: 25,
+          icon: '✈️',
+          title: 'Flight Explorer',
+          desc: '25% saved! You have enough momentum for your flight to Tokyo or Osaka!'
+        },
+        {
+          id: 'm50',
+          percent: 50,
+          icon: '🍜',
+          title: 'Ramen & Matcha',
+          desc: '50% halfway there! Extra chashu pork and Uji matcha treats await!'
+        },
+        {
+          id: 'm75',
+          percent: 75,
+          icon: '🚅',
+          title: 'Shinkansen VIP',
+          desc: '75% reached! Bullet train tickets past Mt. Fuji are practically yours!'
+        },
+        {
+          id: 'm100',
+          percent: 100,
+          icon: '🌸',
+          title: 'Japan Champion!',
+          desc: '100% GOAL COMPLETE! Pack your bags—Japan in April is officially unlocked!'
+        }
+      ];
+
+      const QUICK_TAGS = {
+        in: ['Payday 💰', 'Coffee skipped ☕', 'Side hustle ✨', 'Red packet 🧧', 'Lunch packed 🍱'],
+        out: ['Bubble tea 🧋', 'Shopping 🛍️', 'Snacks 🍩', 'Emergency 🩹', 'Dinner out 🍕']
+      };
+
+      const defaultState = {
+        goalName: 'Japan in April',
+        targetAmount: 20000,
+        soundEnabled: true,
+        transactions: [], // { id, type: 'in'|'out', amount, note, timestamp }
+        unlockedMilestones: [] // array of milestone ids e.g. ['m25']
+      };
+
+      let state = loadState();
+      let currentModalType = 'in'; // 'in' or 'out'
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return { ...defaultState };
+          const parsed = JSON.parse(raw);
+          return {
+            goalName: parsed.goalName || defaultState.goalName,
+            targetAmount: Number(parsed.targetAmount) > 0 ? Number(parsed.targetAmount) : defaultState.targetAmount,
+            soundEnabled: typeof parsed.soundEnabled === 'boolean' ? parsed.soundEnabled : true,
+            transactions: Array.isArray(parsed.transactions) ? parsed.transactions : [],
+            unlockedMilestones: Array.isArray(parsed.unlockedMilestones) ? parsed.unlockedMilestones : []
+          };
+        } catch (e) {
+          console.error('Failed to load state:', e);
+          return { ...defaultState };
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {
+          console.error('Failed to save state:', e);
+        }
+      }
+
+      // ==========================================
+      // 2. WEB AUDIO SYNTHESIZER (HAPPY SOUNDS)
+      // ==========================================
+      let audioCtx = null;
+
+      function getAudioContext() {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            audioCtx = new AudioContextClass();
+          }
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      }
+
+      function playSaveSound() {
+        if (!state.soundEnabled) return;
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        // Play a cheerful rising coin/marimba arpeggio (C5 -> E5 -> G5 -> C6)
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        const now = ctx.currentTime;
+
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.065);
+
+          gain.gain.setValueAtTime(0.001, now + idx * 0.065);
+          gain.gain.exponentialRampToValueAtTime(0.22, now + idx * 0.065 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.065 + 0.28);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(now + idx * 0.065);
+          osc.stop(now + idx * 0.065 + 0.3);
+        });
+      }
+
+      function playBadgeFanfare() {
+        if (!state.soundEnabled) return;
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const melody = [
+          { freq: 523.25, time: 0, dur: 0.14 },
+          { freq: 659.25, time: 0.12, dur: 0.14 },
+          { freq: 783.99, time: 0.24, dur: 0.14 },
+          { freq: 1046.50, time: 0.36, dur: 0.35 },
+          { freq: 880.00, time: 0.54, dur: 0.14 },
+          { freq: 1046.50, time: 0.68, dur: 0.5 }
+        ];
+        const now = ctx.currentTime;
+
+        melody.forEach((n) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(n.freq, now + n.time);
+
+          gain.gain.setValueAtTime(0.001, now + n.time);
+          gain.gain.exponentialRampToValueAtTime(0.25, now + n.time + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + n.time + n.dur);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + n.time);
+          osc.stop(now + n.time + n.dur + 0.02);
+        });
+      }
+
+      function playSpendSound() {
+        if (!state.soundEnabled) return;
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        // Soft gentle descending boop
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(420, now);
+        osc.frequency.exponentialRampToValueAtTime(260, now + 0.22);
+
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      }
+
+      function playOctoTapSound() {
+        if (!state.soundEnabled) return;
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(380, now);
+        osc.frequency.exponentialRampToValueAtTime(680, now + 0.12);
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.15);
+      }
+
+      // ==========================================
+      // 3. CONFETTI PARTICLE ENGINE
+      // ==========================================
+      const confettiCanvas = document.getElementById('confetti-canvas');
+      const confettiCtx = confettiCanvas.getContext('2d');
+      let confettiParticles = [];
+      let confettiAnimId = null;
+
+      function resizeConfettiCanvas() {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeConfettiCanvas);
+      resizeConfettiCanvas();
+
+      function launchConfetti(intensity = 75) {
+        const colors = ['#10B981', '#2DD4BF', '#FB7185', '#FACC15', '#38BDF8', '#A78BFA', '#F472B6'];
+        const shapes = ['rect', 'circle'];
+
+        for (let i = 0; i < intensity; i++) {
+          confettiParticles.push({
+            x: window.innerWidth * (0.2 + Math.random() * 0.6),
+            y: window.innerHeight * 0.45,
+            vx: (Math.random() - 0.5) * 16,
+            vy: -Math.random() * 14 - 5,
+            size: Math.random() * 8 + 5,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            shape: shapes[Math.floor(Math.random() * shapes.length)],
+            rotation: Math.random() * 360,
+            vRot: (Math.random() - 0.5) * 14,
+            gravity: 0.38,
+            drag: 0.985,
+            alpha: 1
+          });
+        }
+
+        if (!confettiAnimId) {
+          animateConfetti();
+        }
+      }
+
+      function animateConfetti() {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+        for (let i = confettiParticles.length - 1; i >= 0; i--) {
+          const p = confettiParticles[i];
+          p.vx *= p.drag;
+          p.vy += p.gravity;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rotation += p.vRot;
+
+          if (p.y > confettiCanvas.height + 20) {
+            confettiParticles.splice(i, 1);
+            continue;
+          }
+
+          confettiCtx.save();
+          confettiCtx.translate(p.x, p.y);
+          confettiCtx.rotate((p.rotation * Math.PI) / 180);
+          confettiCtx.fillStyle = p.color;
+
+          if (p.shape === 'circle') {
+            confettiCtx.beginPath();
+            confettiCtx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+            confettiCtx.fill();
+          } else {
+            confettiCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+          }
+          confettiCtx.restore();
+        }
+
+        if (confettiParticles.length > 0) {
+          confettiAnimId = requestAnimationFrame(animateConfetti);
+        } else {
+          confettiAnimId = null;
+        }
+      }
+
+      // ==========================================
+      // 4. FORMATTING & CALCULATIONS
+      // ==========================================
+      function formatHKD(amount) {
+        const rounded = Math.round(amount * 100) / 100;
+        return 'HK$' + rounded.toLocaleString('en-HK', {
+          minimumFractionDigits: rounded % 1 === 0 ? 0 : 2,
+          maximumFractionDigits: 2
+        });
+      }
+
+      function computeTotals() {
+        let totalIn = 0;
+        let totalOut = 0;
+
+        state.transactions.forEach((tx) => {
+          if (tx.type === 'in') totalIn += tx.amount;
+          else if (tx.type === 'out') totalOut += tx.amount;
+        });
+
+        const netSaved = Math.max(0, totalIn - totalOut);
+        const rawPercent = state.targetAmount > 0 ? (netSaved / state.targetAmount) * 100 : 0;
+        const clampedPercent = Math.min(100, Math.max(0, rawPercent));
+        const remaining = Math.max(0, state.targetAmount - netSaved);
+
+        return { totalIn, totalOut, netSaved, rawPercent, clampedPercent, remaining };
+      }
+
+      function formatRelativeTime(isoString) {
+        const date = new Date(isoString);
+        const now = new Date();
+        const diffSec = Math.floor((now - date) / 1000);
+
+        if (diffSec < 60) return 'Just now';
+        if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago`;
+        if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}h ago`;
+
+        return date.toLocaleDateString('en-HK', { month: 'short', day: 'numeric' });
+      }
+
+      // ==========================================
+      // 5. OCTOPUS MASCOT SPEECH & ANIMATION
+      // ==========================================
+      const octoEmojiEl = document.getElementById('octo-emoji');
+      const octoSpeechEl = document.getElementById('octo-speech');
+
+      function animateOcto(mode) {
+        octoEmojiEl.classList.remove('octo-idle', 'octo-cheer', 'octo-sad');
+        void octoEmojiEl.offsetWidth; // trigger reflow
+        if (mode === 'cheer') {
+          octoEmojiEl.classList.add('octo-cheer');
+          setTimeout(() => {
+            octoEmojiEl.classList.remove('octo-cheer');
+            octoEmojiEl.classList.add('octo-idle');
+          }, 900);
+        } else if (mode === 'sad') {
+          octoEmojiEl.classList.add('octo-sad');
+          setTimeout(() => {
+            octoEmojiEl.classList.remove('octo-sad');
+            octoEmojiEl.classList.add('octo-idle');
+          }, 600);
+        } else {
+          octoEmojiEl.classList.add('octo-idle');
+        }
+      }
+
+      function updateOctoSpeech(actionContext = null, amount = 0) {
+        const { netSaved, rawPercent, remaining } = computeTotals();
+
+        if (actionContext === 'save') {
+          const cheerLines = [
+            `WOOHOO! +${formatHKD(amount)} closer to Japan! Eight tentacles clapping for you! 🎉`,
+            `Sugoi!! You tucked away ${formatHKD(amount)}! Sushi dreams getting closer! 🍣`,
+            `Splash-tastic! ${formatHKD(amount)} saved! Only ${formatHKD(remaining)} left to go! ✨`,
+            `Tako is doing backflips! Awesome boost of ${formatHKD(amount)}! 🐙💚`
+          ];
+          octoSpeechEl.textContent = remaining === 0
+            ? `BINGO!! 100% REACHED! You saved ${formatHKD(netSaved)} for ${state.goalName}! 🌸🎊`
+            : cheerLines[Math.floor(Math.random() * cheerLines.length)];
+          return;
+        }
+
+        if (actionContext === 'spend') {
+          octoSpeechEl.textContent = `Blub... ${formatHKD(amount)} went out. No worries, we’ll bounce right back to ${state.goalName}! 💪🐙`;
+          return;
+        }
+
+        if (actionContext === 'tap') {
+          const tapLines = [
+            `Hehe, that tickles! Every HK$100 brings ${state.goalName} closer! 🐙`,
+            `Kon'nichiwa! Ready to feed my savings jar today? 🌸`,
+            `Eight arms ready to cheer you on to ${formatHKD(state.targetAmount)}! ✨`,
+            `Skip one bubble tea = +HK$40 for Tokyo ramen! 🍜`
+          ];
+          octoSpeechEl.textContent = tapLines[Math.floor(Math.random() * tapLines.length)];
+          return;
+        }
+
+        // Default status-based speech
+        if (netSaved === 0) {
+          octoSpeechEl.textContent = `Blub-blub! Ready to save ${formatHKD(state.targetAmount)} for ${state.goalName}? Tap + Add Savings!`;
+        } else if (rawPercent >= 100) {
+          octoSpeechEl.textContent = `SUGOI!! You hit 100% (${formatHKD(netSaved)})! Have the best time in Japan! 🌸✈️`;
+        } else if (rawPercent >= 75) {
+          octoSpeechEl.textContent = `Over 75% there! Just ${formatHKD(remaining)} more and we're boarding the Shinkansen! 🚅`;
+        } else if (rawPercent >= 50) {
+          octoSpeechEl.textContent = `Halfway hero! ${formatHKD(netSaved)} saved—ramen & matcha are calling! 🍜`;
+        } else if (rawPercent >= 25) {
+          octoSpeechEl.textContent = `25%+ unlocked! You're cruising at ${Math.floor(rawPercent)}% toward ${state.goalName}! ✈️`;
+        } else {
+          octoSpeechEl.textContent = `Great start with ${formatHKD(netSaved)} saved! Keep feeding the quest! 🐙💚`;
+        }
+      }
+
+      // ==========================================
+      // 6. UI RENDERING
+      // ==========================================
+      function renderAll(actionContext = null, actionAmount = 0) {
+        const { totalIn, totalOut, netSaved, rawPercent, clampedPercent, remaining } = computeTotals();
+
+        // Header & Goal Title
+        document.getElementById('header-goal-title').textContent = state.goalName;
+        document.getElementById('target-amount-display').textContent = formatHKD(state.targetAmount);
+        document.getElementById('current-saved-display').textContent = formatHKD(netSaved);
+
+        // Percent Pill & Remaining
+        const displayPct = Math.floor(rawPercent);
+        document.getElementById('percent-badge').textContent = `${displayPct}% Complete`;
+        document.getElementById('remaining-pill').textContent = remaining === 0
+          ? '🎉 Goal Reached!'
+          : `${formatHKD(remaining)} to go`;
+
+        // Progress Ring SVG (circumference = 2 * PI * 90 = 565.48)
+        const circumference = 565.48;
+        const offset = circumference - (clampedPercent / 100) * circumference;
+        const ringEl = document.getElementById('progress-ring-circle');
+        ringEl.style.strokeDashoffset = offset.toFixed(2);
+        ringEl.setAttribute('stroke', clampedPercent >= 100 ? 'url(#goldRingGrad)' : 'url(#mintRingGrad)');
+
+        // Sound Button Icon
+        document.getElementById('btn-sound-toggle').textContent = state.soundEnabled ? '🔊' : '🔇';
+
+        // Summary Totals
+        document.getElementById('total-in-display').textContent = formatHKD(totalIn);
+        document.getElementById('total-out-display').textContent = formatHKD(totalOut);
+
+        // Render Badges
+        renderBadges(rawPercent);
+
+        // Render Transactions
+        renderTransactions();
+
+        // Update Mascot Speech
+        updateOctoSpeech(actionContext, actionAmount);
+      }
+
+      function renderBadges(currentPercent) {
+        const grid = document.getElementById('badges-grid');
+        grid.innerHTML = '';
+
+        let unlockedCount = 0;
+
+        MILESTONES.forEach((m) => {
+          const isUnlocked = state.unlockedMilestones.includes(m.id) || currentPercent >= m.percent;
+          if (isUnlocked) unlockedCount++;
+
+          const targetVal = (state.targetAmount * m.percent) / 100;
+          const card = document.createElement('button');
+          card.type = 'button';
+          card.className = isUnlocked
+            ? 'rounded-2xl p-2 bg-gradient-to-b from-amber-50 to-yellow-100 border-2 border-sunny-400 flex flex-col items-center text-center shadow-xs transition active:scale-95 cursor-pointer'
+            : 'rounded-2xl p-2 bg-slate-50 border-2 border-dashed border-slate-200 flex flex-col items-center text-center opacity-65 grayscale transition cursor-pointer';
+
+          card.innerHTML = `
+            <div class="w-10 h-10 rounded-xl ${isUnlocked ? 'bg-white shadow-xs' : 'bg-slate-200/70'} flex items-center justify-center text-2xl mb-1">
+              ${isUnlocked ? m.icon : '🔒'}
+            </div>
+            <span class="font-display font-bold text-[11px] leading-tight text-slate-800">${m.percent}%</span>
+            <span class="text-[10px] font-extrabold text-slate-500 truncate w-full">${m.title}</span>
+          `;
+
+          card.addEventListener('click', () => {
+            if (isUnlocked) {
+              showBadgeModal(m, false);
+            } else {
+              octoSpeechEl.textContent = `Reach ${m.percent}% (${formatHKD(targetVal)}) to unlock the "${m.title}" ${m.icon} badge!`;
+              animateOcto('cheer');
+            }
+          });
+
+          grid.appendChild(card);
+        });
+
+        document.getElementById('badges-count-pill').textContent = `${unlockedCount} / 4 Unlocked`;
+      }
+
+      function renderTransactions() {
+        const listEl = document.getElementById('transactions-list');
+        listEl.innerHTML = '';
+
+        if (state.transactions.length === 0) {
+          listEl.innerHTML = `
+            <div class="text-center py-6 px-4 rounded-2xl bg-slate-50 border-2 border-dashed border-slate-200">
+              <div class="text-3xl mb-1">🐙💰</div>
+              <p class="text-sm font-extrabold text-slate-600">No entries yet!</p>
+              <p class="text-xs font-semibold text-slate-400">Tap "Add Savings" above to make your first deposit.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Show newest first
+        const reversed = [...state.transactions].reverse();
+
+        reversed.forEach((tx) => {
+          const isIn = tx.type === 'in';
+          const row = document.createElement('div');
+          row.className = 'flex items-center justify-between p-2.5 rounded-2xl bg-slate-50/90 border border-slate-100 hover:border-mint-200 transition';
+
+          row.innerHTML = `
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-9 h-9 rounded-xl ${isIn ? 'bg-mint-100 text-mint-600' : 'bg-rose-100 text-coral-500'} flex items-center justify-center font-display font-bold text-lg shrink-0">
+                ${isIn ? '+' : '−'}
+              </div>
+              <div class="min-w-0">
+                <div class="text-sm font-extrabold text-slate-800 truncate">${escapeHtml(tx.note || (isIn ? 'Savings Boost' : 'Money Out'))}</div>
+                <div class="text-[11px] font-bold text-slate-400">${formatRelativeTime(tx.timestamp)}</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 ml-2">
+              <span class="font-display font-bold text-sm ${isIn ? 'text-mint-600' : 'text-coral-500'}">
+                ${isIn ? '+' : '−'}${formatHKD(tx.amount)}
+              </span>
+              <button data-delete-id="${tx.id}" title="Delete entry" class="w-7 h-7 rounded-lg text-slate-300 hover:text-coral-500 hover:bg-rose-50 flex items-center justify-center text-xs font-bold transition">
+                ✕
+              </button>
+            </div>
+          `;
+
+          const delBtn = row.querySelector('[data-delete-id]');
+          delBtn.addEventListener('click', () => deleteTransaction(tx.id));
+
+          listEl.appendChild(row);
+        });
+      }
+
+      function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      // ==========================================
+      // 7. TRANSACTIONS & MILESTONE CHECKS
+      // ==========================================
+      function addTransaction(type, amount, note) {
+        const cleanAmount = Math.round(Number(amount) * 100) / 100;
+        if (!cleanAmount || cleanAmount <= 0) return;
+
+        const prevTotals = computeTotals();
+
+        const tx = {
+          id: 'tx_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+          type,
+          amount: cleanAmount,
+          note: note.trim(),
+          timestamp: new Date().toISOString()
+        };
+
+        state.transactions.push(tx);
+
+        const newTotals = computeTotals();
+        let newlyUnlockedBadge = null;
+
+        if (type === 'in') {
+          // Check if any milestone was newly crossed
+          MILESTONES.forEach((m) => {
+            if (newTotals.rawPercent >= m.percent && !state.unlockedMilestones.includes(m.id)) {
+              state.unlockedMilestones.push(m.id);
+              newlyUnlockedBadge = m;
+            }
+          });
+        }
+
+        saveState();
+        renderAll(type === 'in' ? 'save' : 'spend', cleanAmount);
+
+        if (type === 'in') {
+          animateOcto('cheer');
+          if (newlyUnlockedBadge) {
+            playBadgeFanfare();
+            launchConfetti(140);
+            setTimeout(() => showBadgeModal(newlyUnlockedBadge, true), 450);
+          } else {
+            playSaveSound();
+            launchConfetti(70);
+          }
+        } else {
+          animateOcto('sad');
+          playSpendSound();
+        }
+      }
+
+      function deleteTransaction(id) {
+        state.transactions = state.transactions.filter((t) => t.id !== id);
+        // Re-sync unlocked milestones based on current balance so badges stay accurate
+        const { rawPercent } = computeTotals();
+        state.unlockedMilestones = MILESTONES
+          .filter((m) => rawPercent >= m.percent)
+          .map((m) => m.id);
+
+        saveState();
+        renderAll();
+      }
+
+      // ==========================================
+      // 8. MODAL INTERACTIONS
+      // ==========================================
+      const txModal = document.getElementById('tx-modal');
+      const txAmountInput = document.getElementById('tx-amount-input');
+      const txNoteInput = document.getElementById('tx-note-input');
+      const txErrorMsg = document.getElementById('tx-error-msg');
+      const btnSubmitTx = document.getElementById('btn-submit-tx');
+
+      function openTxModal(type) {
+        currentModalType = type;
+        txAmountInput.value = '';
+        txNoteInput.value = '';
+        txErrorMsg.classList.add('hidden');
+
+        const isIn = type === 'in';
+        document.getElementById('modal-title').textContent = isIn ? 'Add Savings' : 'Money Out';
+        document.getElementById('modal-subtitle').textContent = isIn
+          ? `Boost your ${state.goalName} fund!`
+          : 'Log a withdrawal or expense';
+
+        const modalIcon = document.getElementById('modal-icon');
+        modalIcon.textContent = isIn ? '+' : '−';
+        modalIcon.className = isIn
+          ? 'w-10 h-10 rounded-2xl bg-mint-100 text-mint-600 flex items-center justify-center text-2xl font-display font-bold'
+          : 'w-10 h-10 rounded-2xl bg-rose-100 text-coral-500 flex items-center justify-center text-2xl font-display font-bold';
+
+        // Update preset buttons styling
+        document.querySelectorAll('.preset-btn').forEach((btn) => {
+          btn.className = isIn
+            ? 'preset-btn btn-pill bg-mint-50 hover:bg-mint-100 border-2 border-mint-200 rounded-2xl py-2.5 font-display font-bold text-sm text-slate-800 transition cursor-pointer'
+            : 'preset-btn btn-pill bg-rose-50 hover:bg-rose-100 border-2 border-rose-200 rounded-2xl py-2.5 font-display font-bold text-sm text-slate-800 transition cursor-pointer';
+        });
+
+        // Update submit button styling & text
+        btnSubmitTx.className = isIn
+          ? 'w-full btn-chunky btn-mint text-white font-display font-bold text-lg py-4 rounded-2xl cursor-pointer'
+          : 'w-full btn-chunky btn-coral text-white font-display font-bold text-lg py-4 rounded-2xl cursor-pointer';
+        updateSubmitButtonLabel();
+
+        // Populate quick tags
+        const tagsContainer = document.getElementById('quick-tags');
+        tagsContainer.innerHTML = '';
+        QUICK_TAGS[type].forEach((tag) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.textContent = tag;
+          chip.className = 'px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-extrabold transition cursor-pointer';
+          chip.addEventListener('click', () => {
+            txNoteInput.value = tag;
+          });
+          tagsContainer.appendChild(chip);
+        });
+
+        txModal.classList.remove('hidden');
+        txModal.classList.add('flex');
+        setTimeout(() => txAmountInput.focus(), 120);
+      }
+
+      function closeTxModal() {
+        txModal.classList.add('hidden');
+        txModal.classList.remove('flex');
+      }
+
+      function updateSubmitButtonLabel() {
+        const val = parseFloat(txAmountInput.value) || 0;
+        const formatted = formatHKD(val);
+        btnSubmitTx.textContent = currentModalType === 'in'
+          ? `Save ${formatted} to Goal! 🐙`
+          : `Deduct ${formatted}`;
+      }
+
+      txAmountInput.addEventListener('input', () => {
+        txErrorMsg.classList.add('hidden');
+        updateSubmitButtonLabel();
+      });
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const addVal = Number(btn.getAttribute('data-amount'));
+          const currentVal = parseFloat(txAmountInput.value) || 0;
+          txAmountInput.value = currentVal + addVal;
+          txErrorMsg.classList.add('hidden');
+          updateSubmitButtonLabel();
+          playOctoTapSound();
+        });
+      });
+
+      btnSubmitTx.addEventListener('click', () => {
+        const val = parseFloat(txAmountInput.value);
+        if (!val || val <= 0) {
+          txErrorMsg.classList.remove('hidden');
+          txAmountInput.focus();
+          return;
+        }
+        const note = txNoteInput.value;
+        closeTxModal();
+        addTransaction(currentModalType, val, note);
+      });
+
+      // Allow Enter key in modal inputs
+      [txAmountInput, txNoteInput].forEach((el) => {
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            btnSubmitTx.click();
+          }
+        });
+      });
+
+      // Badge Celebration Modal
+      const badgeModal = document.getElementById('badge-modal');
+      function showBadgeModal(milestone, isNewUnlock) {
+        document.getElementById('badge-modal-icon').textContent = milestone.icon;
+        document.getElementById('badge-modal-title').textContent = `${milestone.title} (${milestone.percent}%)`;
+        document.getElementById('badge-modal-desc').textContent = milestone.desc;
+        badgeModal.classList.remove('hidden');
+        badgeModal.classList.add('flex');
+        if (isNewUnlock) {
+          document.getElementById('badge-modal-icon').classList.add('badge-unlocked-pop');
+        }
+      }
+
+      document.getElementById('btn-close-badge-modal').addEventListener('click', () => {
+        badgeModal.classList.add('hidden');
+        badgeModal.classList.remove('flex');
+      });
+
+      // Settings Modal
+      const settingsModal = document.getElementById('settings-modal');
+      const settingsGoalName = document.getElementById('settings-goal-name');
+      const settingsGoalTarget = document.getElementById('settings-goal-target');
+      const resetConfirmBox = document.getElementById('reset-confirm-box');
+
+      document.getElementById('btn-settings').addEventListener('click', () => {
+        settingsGoalName.value = state.goalName;
+        settingsGoalTarget.value = state.targetAmount;
+        resetConfirmBox.classList.add('hidden');
+        settingsModal.classList.remove('hidden');
+        settingsModal.classList.add('flex');
+      });
+
+      document.getElementById('btn-close-settings').addEventListener('click', () => {
+        settingsModal.classList.add('hidden');
+        settingsModal.classList.remove('flex');
+      });
+
+      document.getElementById('btn-save-settings').addEventListener('click', () => {
+        const newName = settingsGoalName.value.trim();
+        const newTarget = parseFloat(settingsGoalTarget.value);
+
+        if (newName) state.goalName = newName;
+        if (newTarget && newTarget >= 100) state.targetAmount = newTarget;
+
+        // Re-evaluate milestones against new target
+        const { rawPercent } = computeTotals();
+        state.unlockedMilestones = MILESTONES
+          .filter((m) => rawPercent >= m.percent)
+          .map((m) => m.id);
+
+        saveState();
+        renderAll();
+        settingsModal.classList.add('hidden');
+        settingsModal.classList.remove('flex');
+      });
+
+      document.getElementById('btn-reset-data').addEventListener('click', () => {
+        resetConfirmBox.classList.remove('hidden');
+      });
+
+      document.getElementById('btn-cancel-reset').addEventListener('click', () => {
+        resetConfirmBox.classList.add('hidden');
+      });
+
+      document.getElementById('btn-confirm-reset').addEventListener('click', () => {
+        state = { ...defaultState, transactions: [], unlockedMilestones: [] };
+        saveState();
+        renderAll();
+        settingsModal.classList.add('hidden');
+        settingsModal.classList.remove('flex');
+        animateOcto('cheer');
+      });
+
+      // Wire up main buttons
+      document.getElementById('btn-open-in').addEventListener('click', () => openTxModal('in'));
+      document.getElementById('btn-open-out').addEventListener('click', () => openTxModal('out'));
+      document.getElementById('btn-close-tx-modal').addEventListener('click', closeTxModal);
+
+      // Close modals on backdrop click
+      [txModal, badgeModal, settingsModal].forEach((modal) => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+          }
+        });
+      });
+
+      // Sound Toggle
+      document.getElementById('btn-sound-toggle').addEventListener('click', () => {
+        state.soundEnabled = !state.soundEnabled;
+        saveState();
+        renderAll();
+        if (state.soundEnabled) playOctoTapSound();
+      });
+
+      // Octopus Mascot Interactive Tap
+      document.getElementById('octo-mascot-btn').addEventListener('click', () => {
+        playOctoTapSound();
+        animateOcto('cheer');
+        updateOctoSpeech('tap');
+      });
+
+      // Initial render on load
+      renderAll();
+    })();
+  </script>
+</body>
+</html>
